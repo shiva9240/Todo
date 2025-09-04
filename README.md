@@ -1,217 +1,281 @@
-Given an app.js file and database file todoApplication.db with a table todo.
+# Todo Application
 
-Write APIs to perform operations on the table todo, with the following columns,
+Given an `app.js` file and database file `todoApplication.db` with a table `todo`.
 
-Todo Table
+Write APIs to perform operations on the table `todo`, with the following columns,
 
-Column	Type
-id	INTEGER
-todo	TEXT
-category	TEXT
-priority	TEXT
-status	TEXT
-due_date	DATE
-Replace the spaces in URL with %20.
-Possible values for priority are HIGH, MEDIUM, and LOW.
-Possible values for status are TO DO, IN PROGRESS, and DONE.
-Possible values for category are WORK, HOME, and LEARNING.
-Use the format yyyy-MM-dd for formating with date-fns format function.
-The user may request with due date value as 2021-1-21, format the date to 2021-01-21 and perform Create, Read, Update operations on the database.
-Use date-fns format function to format the date. Refer to the documentation link for the usage of the format function.
+**Todo Table**
 
-Invalid scenarios for all APIs
-Invalid Status
+| Column   | Type    |
+| -------- | ------- |
+| id       | INTEGER |
+| todo     | TEXT    |
+| category | TEXT    |
+| priority | TEXT    |
+| status   | TEXT    |
+| due_date | DATE    |
 
-Response
-Status code
-400
-Body
-Invalid Todo Status
-Invalid Priority
+<MultiLineNote>
+  
+  - Replace the spaces in URL with `%20`.
+  - Possible values for `priority` are `HIGH`, `MEDIUM`, and `LOW`.
+  - Possible values for `status` are `TO DO`, `IN PROGRESS`, and `DONE`.
+  - Possible values for `category` are `WORK`, `HOME`, and `LEARNING`.
+  - Use the format `yyyy-MM-dd` for formating with date-fns `format` function.
+    - The user may request with due date value as `2021-1-21`, format the date to `2021-01-21` and perform Create, Read, Update operations on the database.
+</MultiLineNote>
 
-Response
-Status code
-400
-Body
-Invalid Todo Priority
-Invalid Category
+<MultiLineQuickTip>
 
-Response
-Status code
-400
-Body
-Invalid Todo Category
-Invalid Due Date
+Use `date-fns` format function to format the date. Refer to the documentation [link](https://date-fns.org/v2.19.0/docs/Getting-Started) for the usage of the `format` function.
+</MultiLineQuickTip>
 
-Response
-Status code
-400
-Body
-Invalid Due Date
-API 1
-Path: /todos/
-Method: GET
-Scenario 1
+### Invalid scenarios for all APIs
 
-Sample API
+- **Invalid Status**
+  - **Response**
+    - **Status code**
+      ```
+      400
+      ```
+    - **Body**
+      ```
+      Invalid Todo Status
+      ```
+- **Invalid Priority**
+  - **Response**
+    - **Status code**
+      ```
+      400
+      ```
+    - **Body**
+      ```
+      Invalid Todo Priority
+      ```
+- **Invalid Category**
 
-/todos/?status=TO%20DO
-Description:
+  - **Response**
+    - **Status code**
+      ```
+      400
+      ```
+    - **Body**
+      ```
+      Invalid Todo Category
+      ```
 
-Returns a list of all todos whose status is 'TO DO'
+- **Invalid Due Date**
+  - **Response**
+    - **Status code**
+      ```
+      400
+      ```
+    - **Body**
+      ```
+      Invalid Due Date
+      ```
 
-Response
+### API 1
 
-[
-  {
-    "id": 2,
-    "todo": "Buy a Car",
-    "priority": "MEDIUM",
-    "status": "TO DO",
-    "category": "HOME",
-    "dueDate": "2021-09-22"
-  },
-  ...
-]
-Scenario 2
+#### Path: `/todos/`
 
-Sample API
+#### Method: `GET`
 
-/todos/?priority=HIGH
-Description:
+- **Scenario 1**
 
-Returns a list of all todos whose priority is 'HIGH'
+  - **Sample API**
+    ```
+    /todos/?status=TO%20DO
+    ```
+  - **Description**:
 
-Response
+    Returns a list of all todos whose status is 'TO DO'
 
-[
-  {
-    "id": 1,
-    "todo": "Learn Node JS",
-    "priority": "HIGH",
-    "status": "IN PROGRESS",
-    "category": "LEARNING",
-    "dueDate": "2021-03-16"
-  },
-  ...
-]
-Scenario 3
+  - **Response**
 
-Sample API
+    ```
+    [
+      {
+        "id": 2,
+        "todo": "Buy a Car",
+        "priority": "MEDIUM",
+        "status": "TO DO",
+        "category": "HOME",
+        "dueDate": "2021-09-22"
+      },
+      ...
+    ]
+    ```
 
-/todos/?priority=HIGH&status=IN%20PROGRESS
-Description:
+- **Scenario 2**
 
-Returns a list of all todos whose priority is 'HIGH' and status is 'IN PROGRESS'
+  - **Sample API**
+    ```
+    /todos/?priority=HIGH
+    ```
+  - **Description**:
 
-Response
+    Returns a list of all todos whose priority is 'HIGH'
 
-[
-  {
-    "id": 1,
-    "todo": "Learn Node JS",
-    "priority": "HIGH",
-    "status": "IN PROGRESS",
-    "category": "LEARNING",
-    "dueDate": "2021-03-16"
-  },
-  ...
-]
-Scenario 4
+  - **Response**
 
-Sample API
+    ```
+    [
+      {
+        "id": 1,
+        "todo": "Learn Node JS",
+        "priority": "HIGH",
+        "status": "IN PROGRESS",
+        "category": "LEARNING",
+        "dueDate": "2021-03-16"
+      },
+      ...
+    ]
+    ```
 
-/todos/?search_q=Buy
-Description:
+- **Scenario 3**
 
-Returns a list of all todos whose todo contains 'Buy' text
+  - **Sample API**
+    ```
+    /todos/?priority=HIGH&status=IN%20PROGRESS
+    ```
+  - **Description**:
 
-Response
+    Returns a list of all todos whose priority is 'HIGH' and status is 'IN PROGRESS'
 
-[
-  {
-    "id": 2,
-    "todo": "Buy a Car",
-    "priority": "MEDIUM",
-    "status": "TO DO",
-    "category": "HOME",
-    "dueDate": "2021-09-22"
-  },
-  ...
-]
-Scenario 5
+  - **Response**
 
-Sample API
+    ```
+    [
+      {
+        "id": 1,
+        "todo": "Learn Node JS",
+        "priority": "HIGH",
+        "status": "IN PROGRESS",
+        "category": "LEARNING",
+        "dueDate": "2021-03-16"
+      },
+      ...
+    ]
+    ```
 
-/todos/?category=WORK&status=DONE
-Description:
+- **Scenario 4**
 
-Returns a list of all todos whose category is 'WORK' and status is 'DONE'
+  - **Sample API**
+    ```
+    /todos/?search_q=Buy
+    ```
+  - **Description**:
 
-Response
+    Returns a list of all todos whose todo contains 'Buy' text
 
-[
-  {
-    "id": 4,
-    "todo": "Fix the bug",
-    "priority": "MEDIUM",
-    "status": "DONE",
-    "category": "WORK",
-    "dueDate": "2021-01-25"
-  },
-  ...
-]
-Scenario 6
+  - **Response**
 
-Sample API
+    ```
+    [
+      {
+        "id": 2,
+        "todo": "Buy a Car",
+        "priority": "MEDIUM",
+        "status": "TO DO",
+        "category": "HOME",
+        "dueDate": "2021-09-22"
+      },
+      ...
+    ]
+    ```
 
-/todos/?category=HOME
-Description:
+- **Scenario 5**
 
-Returns a list of all todos whose category is 'HOME'
+  - **Sample API**
+    ```
+    /todos/?category=WORK&status=DONE
+    ```
+  - **Description**:
 
-Response
+    Returns a list of all todos whose category is 'WORK' and status is 'DONE'
 
-[
-  {
-    "id": 2,
-    "todo": "Buy a Car",
-    "priority": "MEDIUM",
-    "status": "TO DO",
-    "category": "HOME",
-    "dueDate": "2021-09-22"
-  },
-  ...
-]
-Scenario 7
+  - **Response**
 
-Sample API
+    ```
+    [
+      {
+        "id": 4,
+        "todo": "Fix the bug",
+        "priority": "MEDIUM",
+        "status": "DONE",
+        "category": "WORK",
+        "dueDate": "2021-01-25"
+      },
+      ...
+    ]
+    ```
 
-/todos/?category=LEARNING&priority=HIGH
-Description:
+- **Scenario 6**
 
-Returns a list of all todos whose category is 'LEARNING' and priority is 'HIGH'
+  - **Sample API**
+    ```
+    /todos/?category=HOME
+    ```
+  - **Description**:
 
-Response
+    Returns a list of all todos whose category is 'HOME'
 
-[
-  {
-    "id": 1,
-    "todo": "Learn Node JS",
-    "priority": "HIGH",
-    "status": "IN PROGRESS",
-    "category": "LEARNING",
-    "dueDate": "2021-03-16"
-  },
-  ...
-]
-API 2
-Path: /todos/:todoId/
-Method: GET
-Description:
+  - **Response**
+
+    ```
+    [
+      {
+        "id": 2,
+        "todo": "Buy a Car",
+        "priority": "MEDIUM",
+        "status": "TO DO",
+        "category": "HOME",
+        "dueDate": "2021-09-22"
+      },
+      ...
+    ]
+    ```
+
+- **Scenario 7**
+
+  - **Sample API**
+    ```
+    /todos/?category=LEARNING&priority=HIGH
+    ```
+  - **Description**:
+
+    Returns a list of all todos whose category is 'LEARNING' and priority is 'HIGH'
+
+  - **Response**
+
+    ```
+    [
+      {
+        "id": 1,
+        "todo": "Learn Node JS",
+        "priority": "HIGH",
+        "status": "IN PROGRESS",
+        "category": "LEARNING",
+        "dueDate": "2021-03-16"
+      },
+      ...
+    ]
+    ```
+
+### API 2
+
+#### Path: `/todos/:todoId/`
+
+#### Method: `GET`
+
+#### Description:
+
 Returns a specific todo based on the todo ID
 
-Response
+#### Response
+
+```
 {
   "id": 1,
   "todo": "Learn Node JS",
@@ -220,13 +284,21 @@ Response
   "category": "LEARNING",
   "dueDate": "2021-03-16"
 }
-API 3
-Path: /agenda/
-Method: GET
-Description:
-Returns a list of all todos with a specific due date in the query parameter /agenda/?date=2021-12-12
+```
 
-Response
+### API 3
+
+#### Path: `/agenda/`
+
+#### Method: `GET`
+
+#### Description:
+
+Returns a list of all todos with a specific due date in the query parameter `/agenda/?date=2021-12-12`
+
+#### Response
+
+```
 [
   {
     "id": 3,
@@ -238,13 +310,21 @@ Response
   },
   ...
 ]
-API 4
-Path: /todos/
-Method: POST
-Description:
+```
+
+### API 4
+
+#### Path: `/todos/`
+
+#### Method: `POST`
+
+#### Description:
+
 Create a todo in the todo table,
 
-Request
+#### Request
+
+```
 {
   "id": 6,
   "todo": "Finalize event theme",
@@ -253,75 +333,116 @@ Request
   "category": "HOME",
   "dueDate": "2021-02-22"
 }
-Response
+```
+
+#### Response
+
+```
 Todo Successfully Added
-API 5
-Path: /todos/:todoId/
-Method: PUT
-Description:
+```
+
+### API 5
+
+#### Path: `/todos/:todoId/`
+
+#### Method: `PUT`
+
+#### Description:
+
 Updates the details of a specific todo based on the todo ID
 
-Scenario 1
+- **Scenario 1**
 
-Request
+  - **Request**
+    ```
+    {
+      "status": "DONE"
+    }
+    ```
+  - **Response**
 
-{
-  "status": "DONE"
-}
-Response
+    ```
+    Status Updated
+    ```
 
-Status Updated
-Scenario 2
+- **Scenario 2**
 
-Request
+  - **Request**
+    ```
+    {
+      "priority": "HIGH"
+    }
+    ```
+  - **Response**
 
-{
-  "priority": "HIGH"
-}
-Response
+    ```
+    Priority Updated
+    ```
 
-Priority Updated
-Scenario 3
+- **Scenario 3**
 
-Request
+  - **Request**
 
-{
-  "todo": "Clean the garden"
-}
-Response
+    ```
+    {
+      "todo": "Clean the garden"
+    }
+    ```
 
-Todo Updated
-Scenario 4
+  - **Response**
 
-Request
+    ```
+    Todo Updated
+    ```
 
-{
-  "category": "LEARNING"
-}
-Response
+- **Scenario 4**
 
-Category Updated
-Scenario 5
+  - **Request**
+    ```
+    {
+      "category": "LEARNING"
+    }
+    ```
+  - **Response**
 
-Request
+    ```
+    Category Updated
+    ```
 
-{
-  "dueDate": "2021-01-12"
-}
-Response
+- **Scenario 5**
 
-Due Date Updated
-API 6
-Path: /todos/:todoId/
-Method: DELETE
-Description:
+  - **Request**
+    ```
+    {
+      "dueDate": "2021-01-12"
+    }
+    ```
+  - **Response**
+
+    ```
+    Due Date Updated
+    ```
+
+### API 6
+
+#### Path: `/todos/:todoId/`
+
+#### Method: `DELETE`
+
+#### Description:
+
 Deletes a todo from the todo table based on the todo ID
 
-Response
+#### Response
+
+```
 Todo Deleted
+```
 
-Use npm install to install the packages.
+<br/>
 
-Export the express instance using the default export syntax.
+Use `npm install` to install the packages.
 
-Use Common JS module syntax.
+**Export the express instance using the default export syntax.**
+
+**Use Common JS module syntax.**
